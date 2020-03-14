@@ -1,24 +1,41 @@
-# README
+# Go-Resto
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## Problem description
 
-Things you may want to cover:
+Create an application to manage menu in a restaurant. Features:
+- Add menu
+- See the list of menu
+- Edit menu
 
-* Ruby version
+## Dev environment setup
 
-* System dependencies
+Prerequisites:
+- Ruby 2.7.0
 
-* Configuration
+Install dependencies
+```shell
+$ yarn
+$ bundle install
+```
 
-* Database creation
+Migrate database
+```shell
+$ rake db:migrate
+```
 
-* Database initialization
+## Build instructions
 
-* How to run the test suite
+NA
 
-* Services (job queues, cache servers, search engines, etc.)
+## Run instructions
 
-* Deployment instructions
+Run test
+```shell
+$ bundle exec rspec
+```
 
-* ...
+Run server
+```shell
+$ rails server
+```
+Go to `http://localhost:3000` and you'll see: "Yay! You’re on Rails!"
