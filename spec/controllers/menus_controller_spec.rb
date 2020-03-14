@@ -94,9 +94,10 @@ RSpec.describe MenusController, type: :controller do
     end
 
     context "with invalid params" do
-      it "returns a unsuccesful response" do
-        post :create, params: {menu: invalid_attributes}, session: valid_session
-        expect(response).not_to be_successful
+      it "raise ActiveRecord::RecordInvalid exception" do
+        expect {
+          post :create, params: {menu: invalid_attributes}, session: valid_session
+      }.to raise_error(ActiveRecord::RecordInvalid)
       end
     end
   end
