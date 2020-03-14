@@ -29,11 +29,18 @@ RSpec.describe MenusController, type: :controller do
   # Menu. As you add validations to Menu, be sure to
   # adjust the attributes here as well.
   let(:valid_attributes) {
-    skip("Add a hash of attributes valid for your model")
+    {
+      'name' => 'sample restaurant',
+      'description' => 'sample description',
+      'price' => 1000
+    }
   }
 
   let(:invalid_attributes) {
-    skip("Add a hash of attributes invalid for your model")
+    {
+      'name' => 'sample restaurant',
+      'description' => 'sample description'
+    }
   }
 
   # This should return the minimal set of values that should be in the session
@@ -87,9 +94,9 @@ RSpec.describe MenusController, type: :controller do
     end
 
     context "with invalid params" do
-      it "returns a success response (i.e. to display the 'new' template)" do
+      it "returns a unsuccesful response" do
         post :create, params: {menu: invalid_attributes}, session: valid_session
-        expect(response).to be_successful
+        expect(response).not_to be_successful
       end
     end
   end
@@ -97,14 +104,20 @@ RSpec.describe MenusController, type: :controller do
   describe "PUT #update" do
     context "with valid params" do
       let(:new_attributes) {
-        skip("Add a hash of attributes valid for your model")
+        {
+          'name' => 'updated name',
+          'description' => 'updated description',
+          'price' => 1000,
+        }
       }
 
       it "updates the requested menu" do
         menu = Menu.create! valid_attributes
         put :update, params: {id: menu.to_param, menu: new_attributes}, session: valid_session
         menu.reload
-        skip("Add assertions for updated state")
+        expect(menu.name).to eql new_attributes['name']
+        expect(menu.description).to eql new_attributes['description']
+        expect(menu.price).to eql new_attributes['price']
       end
 
       it "redirects to the menu" do
@@ -115,10 +128,10 @@ RSpec.describe MenusController, type: :controller do
     end
 
     context "with invalid params" do
-      it "returns a success response (i.e. to display the 'edit' template)" do
+      it "returns a unsuccessful response" do
         menu = Menu.create! valid_attributes
         put :update, params: {id: menu.to_param, menu: invalid_attributes}, session: valid_session
-        expect(response).to be_successful
+        expect(response).not_to be_successful
       end
     end
   end
